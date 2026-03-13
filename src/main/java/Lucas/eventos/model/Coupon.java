@@ -21,7 +21,7 @@ public class Coupon {
     private UUID id;
     private Integer discount;
     @Column(unique = true)
-    private Long code;
+    private String code;
     private Date valid;
 
     @ManyToOne
