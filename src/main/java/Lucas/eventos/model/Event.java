@@ -17,6 +17,7 @@ import java.util.UUID;
 @Table(name = "eventos")
 public class Event {
 
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
@@ -25,4 +26,7 @@ public class Event {
     private Date date;
     private boolean remote;
 
+    public boolean getRemote() {
+        return remote;
+    }
 }
