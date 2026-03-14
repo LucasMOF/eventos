@@ -19,6 +19,9 @@ public class EventService {
     @Autowired
     private EventRepository repository;
 
+    @Autowired
+    private AddressService addressService;
+
     public Event createEvent(EventRequestDTO dto) {
         Event novoEvent = new Event();
 
@@ -27,8 +30,12 @@ public class EventService {
         novoEvent.setDate(dto.date());
         novoEvent.setRemote(dto.remote());
 
-        return repository.save(novoEvent);
+        repository.save(novoEvent);
 
+        if (!dto.remote()) {
+            this.addressService.createAddress(dto, novoEvent);
+        }
+        return novoEvent;
     }
 
     public List<EventResponseDTO> getEvent(int page, int size) {
