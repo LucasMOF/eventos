@@ -16,7 +16,7 @@ public class AddressService {
     public Address createAddress(EventRequestDTO dto, Event event){
         Address address = new Address();
         address.setCity(dto.city());
-        address.setUF(dto.uf());
+        address.setUf(dto.uf());
         address.setEvent(event);
 
         return addressRepository.save(address);

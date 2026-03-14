@@ -26,6 +26,9 @@ public class Event {
     private Date date;
     private boolean remote;
 
+    @OneToOne(mappedBy = "event", cascade = CascadeType.ALL)
+    private Address address;
+
     public boolean getRemote() {
         return remote;
     }

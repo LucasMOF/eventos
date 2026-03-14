@@ -20,7 +20,7 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
     private String city;
-    private String UF;
+    private String uf;
 
     @ManyToOne
     @JoinColumn(name = "event_id")
