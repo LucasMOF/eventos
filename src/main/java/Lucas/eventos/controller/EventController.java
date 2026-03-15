@@ -1,6 +1,7 @@
 package Lucas.eventos.controller;
 
 import Lucas.eventos.model.Event;
+import Lucas.eventos.model.dto.EventDetailsDTO;
 import Lucas.eventos.model.dto.EventRequestDTO;
 import Lucas.eventos.model.dto.EventResponseDTO;
 import Lucas.eventos.service.EventService;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/event")
@@ -51,4 +53,9 @@ public class EventController {
         return ResponseEntity.ok(filterEvents);
     }
 
+    @GetMapping("/{eventId}")
+    public ResponseEntity<EventDetailsDTO> getEventDetails(@PathVariable UUID eventId) {
+        EventDetailsDTO eventDetails = this.eventService.getEventDetails(eventId);
+        return ResponseEntity.ok(eventDetails);
+    }
 }

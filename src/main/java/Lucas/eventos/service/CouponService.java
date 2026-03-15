@@ -8,6 +8,8 @@ import Lucas.eventos.repository.EventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -19,7 +21,7 @@ public class CouponService {
     @Autowired
     private EventRepository eventRepository;
 
-    public Coupon createCoupon(UUID eventId, CouponRequestDTO dto){
+    public Coupon createCoupon(UUID eventId, CouponRequestDTO dto) {
         Event event = eventRepository.findById(eventId)
                 .orElseThrow(() -> new IllegalArgumentException("Evento não encontrado!"));
 
@@ -32,4 +34,9 @@ public class CouponService {
         return couponRepository.save(coupon);
 
     }
+
+    public List<Coupon> consultCoupon(UUID eventId, Date currentDate) {
+        return couponRepository.findByEventIdAndValidAfter(eventId, currentDate);
+    }
+
 }

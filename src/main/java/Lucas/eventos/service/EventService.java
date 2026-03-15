@@ -1,6 +1,8 @@
 package Lucas.eventos.service;
 
+import Lucas.eventos.model.Coupon;
 import Lucas.eventos.model.Event;
+import Lucas.eventos.model.dto.EventDetailsDTO;
 import Lucas.eventos.model.dto.EventRequestDTO;
 import Lucas.eventos.model.dto.EventResponseDTO;
 import Lucas.eventos.repository.EventRepository;
@@ -12,6 +14,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Service
 public class EventService {
@@ -21,6 +25,9 @@ public class EventService {
 
     @Autowired
     private AddressService addressService;
+
+    @Autowired
+    private CouponService couponService;
 
     public Event createEvent(EventRequestDTO dto) {
         Event novoEvent = new Event();
@@ -87,4 +94,24 @@ public class EventService {
                 .stream().toList();
     }
 
+    public EventDetailsDTO getEventDetails(UUID eventId) {
+        Event event = repository.findById(eventId)
+                .orElseThrow(() -> new IllegalArgumentException("Evento não encontrado!"));
+
+        List<Coupon> coupons = couponService.consultCoupon(eventId, new Date());
+
+        List<EventDetailsDTO.CouponDTO> couponDTOS = coupons.stream()
+                .map(coupon -> new EventDetailsDTO.CouponDTO(coupon.getCode(), coupon.getDiscount(), coupon.getValid()))
+                .collect(Collectors.toList());
+
+        return new EventDetailsDTO(
+                event.getId(),
+                event.getTitulo(),
+                event.getDescricao(),
+                event.getDate(),
+                event.getRemote(),
+                event.getAddress() != null ? event.getAddress().getCity() : "",
+                event.getAddress() != null ? event.getAddress().getUf() : "",
+                couponDTOS);
+    }
 }
