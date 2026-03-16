@@ -17,3 +17,19 @@ O sistema baseia-se em três entidades principais relacionadas:
  - **Event (Eventos):** Entidade central que armazena título, descrição, data e se o evento é remoto ou presencial.
  - **Address (Endereços):** Armazena a localização (UF e Cidade). Relacionado opcionalmente ao evento (caso não seja remoto).
  - **Coupon (Cupons):** Gerencia códigos de desconto e validade para eventos específicos.
+
+### Funcionalidades Principais
+ - **Cadastro de Eventos:** Criação de eventos presenciais ou remotos.
+
+ - **Gestão de Cupons:** Cadastro de cupons vinculados a um ID de evento específico.
+
+ - **Listagem com Paginação:** Endpoint otimizado para retornar eventos em páginas.
+
+ - **Filtros Avançados:** Busca inteligente de eventos por:
+
+    - Título (Case insensitive)
+    - Cidade e UF (Estado)
+    - Intervalo de Datas (Start/End Date)
+    - Eventos Futuros (Filtro automático para datas ≥ data atual)
+
+ - **Lógica de Localização:** Tratamento para eventos remotos (que não possuem endereço físico).
