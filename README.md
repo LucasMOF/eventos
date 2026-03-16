@@ -38,7 +38,7 @@ O sistema baseia-se em três entidades principais relacionadas:
 | Método | Endpoint | Descrição |
 | :--- | :--- | :--- |
 | POST | /event | Cadastra um novo evento |
-| GET | /event | lista eventos com paginação |
-| GET | /upcoming | lista eventos futuros |
+| GET | /event | Lista eventos com paginação |
+| GET | /upcoming | Lista eventos futuros |
 | GET | /filter | Lista eventos com filtros |
 | POST | /coupon/{evendId} | Adiciona cupom a um evento | 
