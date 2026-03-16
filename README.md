@@ -33,3 +33,12 @@ O sistema baseia-se em três entidades principais relacionadas:
     - Eventos Futuros (Filtro automático para datas ≥ data atual)
 
  - **Lógica de Localização:** Tratamento para eventos remotos (que não possuem endereço físico).
+
+### Endpoints
+| Método | Endpoint | Descrição |
+| :--- | :--- | :--- |
+| POST | /event | Cadastra um novo evento |
+| GET | /event | lista eventos com paginação |
+| GET | /upcoming | lista eventos futuros |
+| GET | /filter | Lista eventos com filtros |
+| POST | /coupon/{evendId} | Adiciona cupom a um evento | 
